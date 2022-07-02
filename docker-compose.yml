@@ -1,0 +1,34 @@
+version: '3.5'
+
+services:
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    networks:
+      - recommandmall
+    ports:
+      - 9200:9200
+      - 9300:9300
+    restart: always
+  
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.15.0
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://host.docker.internal:9200"]'
+    networks:
+      - recommandmall
+    ports:
+      - 5601:5601
+    restart: always
+
+networks:
+  recommandmall:
+    driver: bridge
+    name: recommandmall
