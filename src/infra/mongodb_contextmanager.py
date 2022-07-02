@@ -10,12 +10,9 @@ mongo_db_url : str = "mongodb+srv://admin:emm05235@cluster0.umzeh.mongodb.net/" 
 class MongodbContextManager:
     """
     Title : MongodbContextManager
+
     This class is to deal mongodb with context manager!
-    mongodb doesn't needs context manager
-    Because Mongodb handle connector themselves
-    Why makes this one?
-    If you want to use another database?
-    Make their context manager, and register them in project_setting.py!
+
     Attributes:
         - __enter__
         - __exit__

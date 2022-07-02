@@ -1,3 +1,6 @@
+"""
+This is Create Index Module
+"""
 import json
 import requests
 
@@ -17,7 +20,7 @@ index = {
     },
     "mappings": {
         "properties": {
-            "id": {
+            "object_id": {
                 "type": "text"
             },
             "title": {
@@ -52,12 +55,24 @@ index = {
 }
 
 def create_index():
-    putUrl = 'http://localhost:9200/products'
+    """
+    Title : create_index
+
+    This is pre indexing method!!
+
+    It make products index to search better
+
+    Args :
+        - None
+
+    Returns :
+        - None
+    """
+    put_url = 'http://localhost:9200/products'
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    r = requests.put(putUrl, data=json.dumps(index.__dict__,
+    res = requests.put(put_url, data=json.dumps(index,
                          indent=4, sort_keys=True), headers=headers)
-    if r.status_code >= 400:
+    if res.status_code >= 400:
         print("There is an error indexing to elasticsearch")
-        print(r.status_code)
-        print(r.json())
-        
+        print(res.status_code)
+        print(res.json())
