@@ -1,6 +1,9 @@
 elasticsearch:
 	docker-compose up -d
 
+pre-install:
+	pip3 insstall -r requirements.txt
+
 data:
 	python3 app.py
 
@@ -20,7 +23,8 @@ lint:
 checklist : typehint lint
 
 set_elasticsearch: elasticsearch
-insert_data: checklist data
+
+insert_data: checklist pre-install data
 
 
 .PHONY: elasticsearch data run checklist
