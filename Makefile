@@ -2,10 +2,10 @@ elasticsearch:
 	docker-compose up -d
 
 pre-install:
-	pip3 insstall -r requirements.txt
+	pip3 install -r collector/resource/requirements.txt
 
 data:
-	python3 app.py
+	python3 collector/app.py
 
 typehint: 
 	mypy ./ --ignore-missing-imports
@@ -27,4 +27,4 @@ set_elasticsearch: elasticsearch
 insert_data: checklist pre-install data
 
 
-.PHONY: elasticsearch data run checklist
+.PHONY: elasticsearch insert_data

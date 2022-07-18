@@ -5,7 +5,7 @@ services:
   elasticsearch:
     container_name: elasticsearch
     build:
-      context: ./elasticsearch
+      context: ./ek/elasticsearch
     environment:
       - xpack.security.enabled=false
       - "discovery.type=single-node"
@@ -21,7 +21,7 @@ services:
   kibana:
     container_name: kibana
     build:
-      context: ./kibana
+      context: ./ek/kibana
     depends_on:
       - elasticsearch
     environment:
